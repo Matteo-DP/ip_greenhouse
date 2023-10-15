@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model sensor_dev {
+  id       Int      @id @default(autoincrement())
+  datetime DateTime @default(now()) @db.DateTime(0)
+  Type     Int
+  Value    Int
+}
+
+model sensor_prod {
+  id       Int      @id @default(autoincrement())
+  datetime DateTime @default(now()) @db.DateTime(0)
+  Type     Int
+  Value    Int
+}
+
+model sensor_staging {
+  id       Int      @id @default(autoincrement())
+  datetime DateTime @default(now()) @db.DateTime(0)
+  Type     Int
+  Value    Int
+}

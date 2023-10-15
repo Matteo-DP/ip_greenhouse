@@ -1,0 +1,32 @@
+{
+  "name": "ip_greenhouse_2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "populate": "node dev/populate/main.js",
+    "truncate": "node dev/populate/db/truncate.js",
+    "populateMoisture": "node dev/populate/db/populateMoisture.js",
+    "populateLamp": "node dev/populate/db/populateLamp.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.4.1",
+    "chart.js": "^4.4.0",
+    "moment": "^2.29.4",
+    "next": "13.5.4",
+    "prisma": "^5.4.1",
+    "react": "^18",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10",
+    "eslint": "^8",
+    "eslint-config-next": "13.5.4",
+    "postcss": "^8",
+    "tailwindcss": "^3"
+  }
+}
