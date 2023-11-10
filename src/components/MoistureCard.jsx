@@ -81,7 +81,7 @@ export default function MoistureCard() {
             <i class="fa-solid fa-arrows-rotate text-zinc-300 fa-lg"></i>
         </button>
         {!loading &&
-            <div className='w-[800px] relative'>
+            <div className='relative w-[800px] h-full'>
                 <Line data={data} options={options} />
             </div>
         }

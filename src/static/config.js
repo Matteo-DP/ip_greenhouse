@@ -3,4 +3,4 @@ export const typeMap = {
   "1": "Light",
   "2": "Lamp",
   "3": "Water pump"
-}
+};

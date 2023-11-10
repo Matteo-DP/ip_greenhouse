@@ -6,7 +6,7 @@ export default function Document() {
   return (
     <Html lang="en" className='bg-zinc-900 text-zinc-100'>
       <Head>
-        <script src="https://kit.fontawesome.com/2ad3ea3c29.js" crossOrigin="anonymous" />
+        <Script src="https://kit.fontawesome.com/2ad3ea3c29.js" crossOrigin="anonymous" />
       </Head>
       <body className='flex flex-row min-h-screen'>
         <Header />
