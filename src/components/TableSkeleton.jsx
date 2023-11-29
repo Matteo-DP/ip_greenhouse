@@ -1,8 +1,14 @@
 import React from 'react'
 
-export default function TableSkeleton() {
+export default function TableSkeleton(isLogs = false, loops = 5) {
 
-    const loopMap = [1,2,3,4,5]
+    // let loopMap = [];
+    // for(var i = 0; i < loops; i++) {
+    //     loopMap.push(i);
+    // }
+    // console.log(loopMap);
+
+    const loopMap = [0, 1, 2, 3, 4]
 
     return (
         <table className="min-w-max text-left text-sm font-light">
@@ -11,7 +17,9 @@ export default function TableSkeleton() {
                 <th scope="col" className="px-6 py-4">#</th>
                 <th scope="col" className="px-6 py-4">Time</th>
                 <th scope="col" className="px-6 py-4">Type</th>
-                <th scope="col" className="px-6 py-4">Value</th>
+                <th scope="col" className="px-6 py-4">
+                    {isLogs ? "Message" : "Value"}
+                </th>
             </tr>
             </thead>
             <tbody>

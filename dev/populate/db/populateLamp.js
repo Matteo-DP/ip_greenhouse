@@ -7,7 +7,7 @@ export async function populateLamp(data_points) {
     
     var value;
     var loops = data_points;
-    const type = 0;
+    const type = 2;
 
     for(let i = 0; i < loops; i++) {
         value = Math.random();

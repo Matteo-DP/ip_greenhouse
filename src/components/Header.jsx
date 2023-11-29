@@ -1,7 +1,21 @@
 import Link from 'next/link'
 import React from 'react'
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
+
+    // const router = useRouter();
+    // const checkActive = () => {
+    //     if (router.usePathName() === '/') {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+    const checkActive = () => {
+        return false;
+    }
 
   return (
     <>
@@ -20,10 +34,28 @@ export default function Header() {
                 <p className='inline font-bold text-xl'>User</p>
             </div>
             <div className='flex flex-col gap-1 text-zinc-200'>
-                <Link className='mb-2' href="#">
-                    <p className='px-4 py-3 w-full text-zinc-800 bg-teal-400 rounded-xl'>
+                <Link className='mb-2' href="/">
+                    <p className={
+                        checkActive() ?
+                            'px-4 py-3 w-full text-zinc-800 bg-teal-400 rounded-xl'
+                            :
+                            'px-4 py-3 w-full hover:bg-teal-700 hover:bg-opacity-25 hover:rounded-xl ease-in transition-all duration-75'
+                            }
+                    >
                         <i class="fa-solid fa-house mr-4"></i>
                             Home
+                    </p>
+                </Link>
+                <Link className='mb-2' href="/logs">
+                    <p className={
+                        checkActive() ?
+                            'px-4 py-3 w-full text-zinc-800 bg-teal-400 rounded-xl'
+                            :
+                            'px-4 py-3 w-full hover:bg-teal-700 hover:bg-opacity-25 hover:rounded-xl ease-in transition-all duration-75'
+                            }
+                    >
+                        <i class="fa-regular fa-clipboard mr-4"></i>
+                            Logs
                     </p>
                 </Link>
                 <Link className='mb-2' href={process.env.NEXT_PUBLIC_PHPMYADMIN} rel="noreferrer" target="_blank">

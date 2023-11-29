@@ -27,3 +27,24 @@ model sensor_staging {
   Type     Int
   Value    Int
 }
+
+model log_dev {
+  id       Int      @id @default(autoincrement())
+  datetime DateTime @default(now()) @db.DateTime(0)
+  type     Int
+  message  String   @db.Text
+}
+
+model log_prod {
+  id       Int      @id @default(autoincrement())
+  datetime DateTime @default(now()) @db.DateTime(0)
+  type     Int
+  message  String   @db.Text
+}
+
+model log_staging {
+  id       Int      @id @default(autoincrement())
+  datetime DateTime @default(now()) @db.DateTime(0)
+  type     Int
+  message  String   @db.Text
+}

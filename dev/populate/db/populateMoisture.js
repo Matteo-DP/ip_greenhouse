@@ -9,7 +9,7 @@ export async function populateMoisture(data_points) {
     const type = 0;
 
     for(let i = 0; i < loops; i++) {
-        value = Math.floor(Math.random() * 255)
+        value = Math.floor(Math.random() * 100)
 
         const now = new Date();
         // Set the hours, minutes, seconds, and milliseconds to random values
