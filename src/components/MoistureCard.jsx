@@ -89,13 +89,15 @@ export default function MoistureCard() {
 
   return (
     <div className="bg-zinc-800 p-6 rounded-md w-full">
-        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className='mb-4 text-zinc-900 text-center py-1 bg-teal-400 bg-opacity-40 rounded-xl border-zinc-900' />
         <p className="text-zinc-300 text-2xl mb-2">Current soil moisture:</p>
         <p className="text-4xl inline">{ moisture?.Value }</p>
         <p className="text-teal-500 inline ml-2">%</p>
         <button className="p-4" onClick={() => setRefresh(refresh + 1)}>
             <i class="fa-solid fa-arrows-rotate text-zinc-300 fa-lg"></i>
         </button>
+        <div className='mt-4'>
+          <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className='text-zinc-900 text-center py-1 bg-teal-400 bg-opacity-40 rounded-xl border-zinc-900' />
+        </div>
         {!loading &&
             <div className='relative w-[800px] h-full'>
                 <Line data={data} options={options} />
