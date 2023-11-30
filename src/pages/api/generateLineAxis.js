@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import moment from "moment/moment";
+import moment from "moment";
 
 const prisma = new PrismaClient();
 
@@ -13,13 +13,13 @@ export default async function generateAxis(req, res) {
             3.2 Loop through the array and calculate the average soil moisture in each interval
     */
 
-    const { typeFilter } = req.query;
+    // getMonth() returns a zero-based value, so we add 1 to it
+    const now = moment();
+    const { day = now.date(), month = now.month() + 1, year = now.year()} = req.query;
 
-    // Get the start and end times of today
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
+    // Get the start and end times of the specified date
+    const startDay = moment(`${year}-${month}-${day}`, 'YYYY-MM-DD').startOf('day').toDate();
+    const endDay = moment(`${year}-${month}-${day}`, 'YYYY-MM-DD').add(1, 'days').startOf('day').toDate()
 
     const filter = {
         orderBy: {
@@ -28,8 +28,8 @@ export default async function generateAxis(req, res) {
         where: {
             Type: 0,
             datetime: {
-                gte: today.toISOString(),
-                lt: tomorrow.toISOString()
+                gte: startDay,
+                lt: endDay
             }
         },
         take: Number(process.env.MAX_DB_GRAPH_ENTRIES)
@@ -50,12 +50,10 @@ export default async function generateAxis(req, res) {
     const intervals = [];
 
     // Set the start time to the beginning of the day
-    const startTime = new Date();
-    startTime.setHours(0, 0, 0, 0);
+    const startTime = new Date(startDay);
     
     // Set the end time to the end of the day
-    const endTime = new Date();
-    endTime.setHours(23, 59, 59, 999);
+    const endTime = new Date(startDay.setHours(23, 59, 59, 999));
     
     // Loop through the time range in 30 minute intervals
     for (let time = startTime; time <= endTime; time.setMinutes(time.getMinutes() + 30)) {
@@ -101,10 +99,14 @@ export default async function generateAxis(req, res) {
     //     })
     // })
 
-    const response = {
+    let response = {
         x: intervals,
         y: averages
     }
+
+    response.y.map((average, i) => { 
+        if(average == 0)  response.y[i] = "N/A"
+    });
 
     return await res.json(response);
 }
