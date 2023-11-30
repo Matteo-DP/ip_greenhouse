@@ -25,7 +25,7 @@ export default async function GenerateBarAxis(req, res) {
     }
 
     const data = await prisma[`sensor_${process.env.ENV}`].findMany(filter);
-    prisma.$disconnect();
+    await prisma.$disconnect();
 
     /* 
         1. Create an array of 60 min intervals in datetime objects

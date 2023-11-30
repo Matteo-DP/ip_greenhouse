@@ -36,7 +36,7 @@ export default async function generateAxis(req, res) {
     }
 
     const data = await prisma[`sensor_${process.env.ENV}`].findMany(filter);
-    prisma.$disconnect();
+    await prisma.$disconnect();
 
     /*
         Calculating the average soil moisture:

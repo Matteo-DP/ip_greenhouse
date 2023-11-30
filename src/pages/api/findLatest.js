@@ -16,6 +16,6 @@ export default async function FindLatest(req, res) {
     }
 
     const data = await prisma[`sensor_${process.env.ENV}`].findFirst(filter);
-    prisma.$disconnect();
+    await prisma.$disconnect();
     return await res.json(data);
 }

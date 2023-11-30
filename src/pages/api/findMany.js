@@ -26,6 +26,6 @@ export default async function findMany(req, res) {
     }
 
     const data = await prisma[`sensor_${process.env.ENV}`].findMany(filter);
-    prisma.$disconnect();
+    await prisma.$disconnect();
     return await res.json(data);
 }
