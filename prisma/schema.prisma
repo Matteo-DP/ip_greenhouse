@@ -48,3 +48,9 @@ model log_staging {
   type     Int
   message  String   @db.Text
 }
+
+model config {
+  name     String    @id @db.VarChar(255)
+  value    Int
+  datetime DateTime? @db.DateTime(0)
+}
